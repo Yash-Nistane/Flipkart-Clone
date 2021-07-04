@@ -19,11 +19,11 @@ const CartItem = (props) => {
      props.onQuantityInc(_id, qty + 1);
   };
 
-   const onQuantityDecrement = () => {
+  const onQuantityDecrement = () => {
      if (qty <= 1) return;
      setQty(qty - 1);
      props.onQuantityDec(_id, qty - 1);
-   };
+  };
 
   return (
     <div className="cartItemContainer">
