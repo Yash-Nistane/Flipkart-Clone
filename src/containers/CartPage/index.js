@@ -3,9 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import Layout from "../../components/Layout";
 import Card from "../../components/UI/Card";
 import CartItem from "./CartItem";
-import { addToCart, getCartItems} from "../../actions";
+import { addToCart, getCartItems } from "../../actions";
 
 import "./style.css";
+import { MaterialButton } from "../../components/MaterialUI";
 
 /**
  * @author
@@ -13,7 +14,6 @@ import "./style.css";
  **/
 
 const CartPage = (props) => {
-
   const cart = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
   //const cartItems = cart.cartItems;
@@ -32,19 +32,23 @@ const CartPage = (props) => {
 
   const onQuantityIncrement = (_id, qty) => {
     //console.log({_id, qty});
-     const { name, price, img } = cartItems[_id];
-     dispatch(addToCart({ _id, name, price, img }, 1));
+    const { name, price, img } = cartItems[_id];
+    dispatch(addToCart({ _id, name, price, img }, 1));
   };
 
   const onQuantityDecrement = (_id, qty) => {
-     const { name, price, img } = cartItems[_id];
-     dispatch(addToCart({ _id, name, price, img }, -1));
+    const { name, price, img } = cartItems[_id];
+    dispatch(addToCart({ _id, name, price, img }, -1));
   };
 
   return (
     <Layout>
-      <div className="cartContainer" style={{alignItems:'flex-start'}}>
-        <Card headerLeft={"My Cart"} headerRight={<div>Deliver to</div>}>
+      <div className="cartContainer" style={{ alignItems: "flex-start" }}>
+        <Card
+          headerLeft={"My Cart"}
+          headerRight={<div>Deliver to</div>}
+          style={{ width: "calc(100% - 400px)", overflow: "hidden" }}
+        >
           {Object.keys(cartItems).map((key, index) => (
             <CartItem
               key={index}
@@ -53,17 +57,34 @@ const CartPage = (props) => {
               onQuantityDec={onQuantityDecrement}
             />
           ))}
+
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              background: "#ffffff",
+              justifyContent: "flex-end",
+              boxShadow: "0 0 10px 10px #eee",
+              padding: "10px 0",
+              boxSizing: "border-box",
+            }}
+          >
+            <div style={{ width: "250px" }}>
+              <MaterialButton
+                title="PLACE ORDER"
+                onClick={() => props.history.push(`/checkout`)}
+              />
+            </div>
+          </div>
         </Card>
         <Card
-        headerLeft="price"
+          headerLeft="price"
           style={{
-            width: "500px",
+            width: "380px",
           }}
-        >
-          
-        </Card>
+        ></Card>
       </div>
-    </Layout>
+    </Layout>  
   );
 };
 
