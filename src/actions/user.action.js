@@ -35,13 +35,13 @@ export const getAddress = () => {
         dispatch({ type: userConstants.ADD_USER_ADDRESS_REQUEST });
          if (res.status === 201) {
           console.log(res);
-        //   const {
-        //     address: { address },
-        //   } = res.data;
-        //   dispatch({
-        //     type: userConstants.ADD_USER_ADDRESS_SUCCESS,
-        //     payload: { address },
-        //   });
+           const {
+             address: { address },
+           } = res.data;
+           dispatch({
+             type: userConstants.ADD_USER_ADDRESS_SUCCESS,
+             payload: { address },
+           });
         } else {
           const { error } = res.data;
           dispatch({
