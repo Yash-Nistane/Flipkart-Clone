@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { generatePublicUrl } from "../../../urlConfig";
 import "./style.css";
+import { BiRupee } from "react-icons/bi";
 
 /**
  * @author
@@ -27,16 +28,19 @@ const CartItem = (props) => {
 
   return (
     <div className="cartItemContainer">
-      <div className="flexRow">
+      <div className="flexRow" style={{marginBottom:"15px"}}>
         <div className="cartProImgContainer">
           <img src={generatePublicUrl(img)} alt={""} />
         </div>
         <div className="cartItemDetails">
           <div>
             <p>{name}</p>
-            <p>Rs. {price}</p>
+            <p className="price"><span style={{paddingTop:"3px"}}><BiRupee/></span> {price}</p>
           </div>
-          <div>Delivery in 3 - 5 days</div>
+          <div style={{marginRight:"20px"}}>
+             Delivery in 3 - 5 days
+          </div>
+          
         </div>
       </div>
       <div
@@ -54,7 +58,7 @@ const CartItem = (props) => {
         <button className="cartActionBtn">save for later</button>
         <button
           className="cartActionBtn"
-          
+          onClick={() => props.onRemoveCartItem(_id)}
         >
           Remove
         </button>

@@ -38,6 +38,7 @@ const MenuHeader = (props) => {
         </li>
       );
     }
+    
     return myCategories;
   }
 

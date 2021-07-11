@@ -1,6 +1,11 @@
 .cartItemContainer{
     margin: 10px 5px;
+    margin-bottom: 20px;
+    border-bottom: 0.1px solid;
+    border-color: grey;
+    padding: 10px;
 }
+
 .cartProImgContainer{
     width: 112px;
     height: 112px;
@@ -32,7 +37,7 @@
 .cartActionBtn{
     margin: 0 10px;
     font-family: 'Roboto';
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
     background: transparent;
     border: none;
@@ -58,4 +63,9 @@
     border: 1px solid #c2c2c2;
     margin: 0 5px;
     text-align: center;
+}
+.price{
+    font-size: 16px;
+    display: flex;
+    align-items: center;
 }

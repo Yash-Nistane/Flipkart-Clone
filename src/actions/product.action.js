@@ -57,7 +57,7 @@ export const getProductDetailsById = (payload) => {
         let res;
         try {
             const { productId } = payload.params;
-            res = await axios.get(`/product/${productId}`);
+            const res = await axios.get(`/product/${productId}`);
             console.log(res);
             dispatch({
                 type: productConstants.GET_PRODUCT_DETAILS_BY_ID_SUCCESS,
@@ -73,4 +73,26 @@ export const getProductDetailsById = (payload) => {
         }
 
     }
+}
+
+export const addReview = (payload) => {
+
+    return async dispatch =>{
+
+        try {
+            const res = await axios.post('/product/addReview',payload);
+            if(res.status == 400)
+            {
+                console.log(res.error);
+            }
+
+            if(res.status == 200)
+            {
+                console.log("review added succesfully");
+            }
+        } catch (error) {
+            
+        }
+    }
+
 }

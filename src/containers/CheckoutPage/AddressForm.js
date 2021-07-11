@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addAddress } from "../../actions";
 import { MaterialButton, MaterialInput } from "../../components/MaterialUI";
+import './styleAddress.css';
 
 /**
  * @author
@@ -105,14 +106,14 @@ const AddressForm = (props) => {
     return (
       <>
         <div className="flexRow">
-          <div style={inputContainer}>
+          <div style={inputContainer} >
             <MaterialInput
               label="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div style={inputContainer}>
+          <div style={inputContainer} className="inputRight">
             <MaterialInput
               label="10-digit mobile number"
               value={mobileNumber}
@@ -128,7 +129,7 @@ const AddressForm = (props) => {
               onChange={(e) => setPinCode(e.target.value)}
             />
           </div>
-          <div style={inputContainer}>
+          <div style={inputContainer} className="inputRight">
             <MaterialInput
               label="Locality"
               value={locality}
@@ -154,7 +155,7 @@ const AddressForm = (props) => {
               onChange={(e) => setCityDistrictTown(e.target.value)}
             />
           </div>
-          <div style={inputContainer}>
+          <div style={inputContainer} className="inputRight">
             <MaterialInput
               label="State"
               value={state}
@@ -170,18 +171,18 @@ const AddressForm = (props) => {
               onChange={(e) => setLandmark(e.target.value)}
             />
           </div>
-          <div style={inputContainer}>
+          <div style={inputContainer} className="inputRight">
             <MaterialInput
-              label="Alternate Phone (Optional)"
+              label="Alternate Phone"
               value={alternatePhone}
               onChange={(e) => setAlternatePhone(e.target.value)}
             />
           </div>
         </div>
-        <div>
-          <label>Address Type</label>
-          <div className="flexRow">
-            <div>
+        <div style={{marginTop:"15px"}}>
+          <label >Address Type</label>
+          <div className="flexRow" style={{marginTop:"5px"}}>
+            <div style={{marginRight:"5px",marginLeft:"-5px"}}>
               <input
                 type="radio"
                 onClick={() => setAddressType("home")}

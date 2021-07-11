@@ -49,11 +49,11 @@ import CartPage from "../CartPage";
               )}
             </div>
             <div className="fullAddress">
-              {adr.address} <br /> {`${adr.state} - ${adr.pinCode}`}
+              {adr.address} <br /> {`${adr.state}`} - <strong>{`${adr.pinCode}`}</strong>
             </div>
             {adr.selected && (
               <MaterialButton
-                title="DELIVERY HERE"
+                title="DELIVER HERE"
                 onClick={() => confirmDeliveryAddress(adr)}
                 style={{
                   width: "200px",
@@ -199,12 +199,13 @@ const CheckoutPage = (props) => {
             body={
               auth.authenticate ? (
                 <div className="loggedInId">
-                  <span style={{ fontWeight: 500 }}>{auth.user.fullName}</span>
-                  <span style={{ margin: "0 5px" }}>{auth.user.email}</span>
+                  <span style={{ fontWeight: 500,fontSize:"14px" }}>{auth.user.fullName}</span>
+                  <span style={{ margin: "0 5px",fontSize:"14px" }}>{auth.user.email}</span>
                 </div>
               ) : (
-                <div>
-                  <MaterialInput label="Email" />
+                <div style={{margin:"15px 0"}}>
+                  {/* <MaterialInput label="Email" /> */}
+                  <span className="loginRequired">Please log in to continue shopping</span>
                 </div>
               )
             }
@@ -217,7 +218,7 @@ const CheckoutPage = (props) => {
             body={
               <>
                 {confirmAddress ? (
-                  <div className="stepCompleted">{`${selectedAddress.name} ${selectedAddress.address} - ${selectedAddress.pinCode}`}</div>
+                  <div className="stepCompleted"><strong>{`${selectedAddress.name}`}</strong> {`${selectedAddress.address}`} - <strong>{`${selectedAddress.pinCode}`}</strong></div>
                 ) : (
                   address.map((adr) => (
                     <Address
@@ -275,7 +276,7 @@ const CheckoutPage = (props) => {
                   alignItems: "center",
                 }}
               >
-                <p style={{ fontSize: "12px" }}>
+                <p style={{ fontSize: "14px" }}>
                   Order confirmation email will be sent to{" "}
                   <strong>{auth.user.email}</strong>
                 </p>
@@ -304,8 +305,8 @@ const CheckoutPage = (props) => {
                       padding: "20px",
                     }}
                   >
-                    <input type="radio" name="paymentOption" value="cod" />
-                    <div>Cash on delivery</div>
+                    <input  type="radio" name="paymentOption" value="cod" />
+                    <div style={{fontSize:"14px",marginLeft:"5px"}}>Cash on delivery</div>
                   </div>
                   <MaterialButton
                     title="CONFIRM ORDER"

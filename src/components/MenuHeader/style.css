@@ -21,6 +21,7 @@
     cursor: default;
     padding: 0 20px;
     font-size: 14px;
+    font-weight: 450;
 }
 .menuHeader > ul > li > span:hover{
     color: #2874f0;
@@ -46,13 +47,13 @@
     float: left;
 }
 .menuHeader > ul > li > ul > li > a{
-    font-weight: bold;
+    font-weight: 600;
     display: block;
 }
 .menuHeader > ul > li > ul > li a{
     padding: 3px 0;
     display: block;
-    font-size: 12px;
+    font-size: 13px;
     text-decoration: none;
     color: #707070;
 }

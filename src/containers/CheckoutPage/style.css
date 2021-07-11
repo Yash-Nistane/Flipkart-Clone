@@ -6,6 +6,7 @@
     background: #fff;
     box-shadow: 0 1px 1px 0px rgba(0, 0, 0, 0.2);
     margin-bottom: 10px;
+    padding-bottom:5px;
 }
 .checkoutHeader{
     width: 100%;
@@ -47,6 +48,12 @@
     box-sizing: border-box;
     padding: 20px;
 }
+.addressName{
+    font-size: 14px;
+}
+.addressMobileNumber{
+    font-size: 14px;
+}
 .addressinfo{
     padding-left: 15px;
     box-sizing: border-box;
@@ -70,16 +77,21 @@
     background: #eee;
     font-weight: 500;
     padding: 1px 5px;
-    font-size: 10px;
+    font-size: 14px;
     border-radius: 2px;
     color: #777777;
 }
 .fullAddress{
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: 1px;
     line-height: 18px;
 }
 .stepCompleted{
     padding: 0 0 20px 60px;
-    font-size: 12px;
+    font-size: 14px;
+}
+.loginRequired{
+    font-size: 14px;
+    padding:50px;
+    
 }

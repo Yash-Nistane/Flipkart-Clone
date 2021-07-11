@@ -25,7 +25,7 @@ const Modal = (props) => {
 };
 
 const MaterialInput = (props) => {
-  const [focus, setFocus] = useState(false);
+  const [focus, setFocus] = useState(true);
 
   return (
     <div className="materialInput">
@@ -74,6 +74,7 @@ const MaterialButton = (props) => {
         style={{
           backgroundColor: props.bgColor,
           color: props.textColor,
+          
         }}
         onClick={onClick}
       >
@@ -95,7 +96,8 @@ const DropdownMenu = (props) => {
           {props.menus &&
             props.menus.map((item, index) => (
               <li key={index}>
-                <a  onClick = {(e => {
+                <a  
+                    onClick = {(e => {
                     if(item.onClick){
                       e.preventDefault();
                       item.onClick && item.onClick();

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Layout from "../../components/Layout";
 import Card from "../../components/UI/Card";
 import CartItem from "./CartItem";
-import { addToCart, getCartItems } from "../../actions";
+import { addToCart, getCartItems,  removeCartItem  } from "../../actions";
 import PriceDetails from "../../components/PriceDetails";
 import "./style.css";
 import { MaterialButton } from "../../components/MaterialUI";
@@ -18,9 +18,29 @@ const CartPage = (props) => {
   const auth = useSelector((state) => state.auth);
   //const cartItems = cart.cartItems;
   const [cartItems, setCartItems] = useState(cart.cartItems);
+  const [noOfCartItems, setNoOfCartItems] = useState(0);
   const dispatch = useDispatch();
 
+  const onOrderPlace=() => {
+
+
+    
+    console.log(noOfCartItems);
+    if(noOfCartItems){
+      props.history.push(`/checkout`)
+    }
+    else{
+       alert("Cart is empty!");
+    }
+  }
+
+  useState (()=> {
+    const result = Object.keys(cart.cartItems).length;
+    setNoOfCartItems(result);
+  },[]);
+
   useEffect(() => {
+
     setCartItems(cart.cartItems);
   }, [cart.cartItems]);
 
@@ -39,6 +59,10 @@ const CartPage = (props) => {
   const onQuantityDecrement = (_id, qty) => {
     const { name, price, img } = cartItems[_id];
     dispatch(addToCart({ _id, name, price, img }, -1));
+  };
+
+  const onRemoveCartItem = (_id) => {
+     dispatch(removeCartItem({ productId: _id }));
   };
 
 
@@ -72,6 +96,7 @@ const CartPage = (props) => {
               cartItem={cartItems[key]}
               onQuantityInc={onQuantityIncrement}
               onQuantityDec={onQuantityDecrement}
+              onRemoveCartItem={onRemoveCartItem}
             />
           ))}
 
@@ -89,7 +114,9 @@ const CartPage = (props) => {
             <div style={{ width: "250px" }}>
               <MaterialButton
                 title="PLACE ORDER"
-                onClick={() => props.history.push(`/checkout`)}
+                //onClick={() => props.history.push(`/checkout`)}
+                onClick = {onOrderPlace}
+                
               />
             </div>
           </div>
@@ -97,7 +124,11 @@ const CartPage = (props) => {
 
         <PriceDetails
           totalItem={Object.keys(cart.cartItems).reduce(function (qty, key) {
-            return qty + cart.cartItems[key].qty;
+
+            qty = qty + cart.cartItems[key].qty;
+            return qty;
+
+            //return qty + cart.cartItems[key].qty;
           }, 0)}
           totalPrice={Object.keys(cart.cartItems).reduce((totalPrice, key) => {
             const { price, qty } = cart.cartItems[key];

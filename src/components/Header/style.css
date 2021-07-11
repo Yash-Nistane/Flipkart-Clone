@@ -26,7 +26,8 @@
 }
 .exploreText{ 
     font-size: 10px;
-    font-style: italic; 
+    font-style: italic;
+    color:#fff; 
 }
 .plusText{ 
     font-size: 10px; 
@@ -82,7 +83,7 @@
     cursor: pointer;
   }
 .more , .fullName {
-    font-weight: bold;
+    font-weight: 500;
     color: #fff;
     display: flex;
     align-items: center;
@@ -90,7 +91,7 @@
     cursor: pointer;
   }
 .cart {
-    font-weight: bold;
+    font-weight: 500;
     color: #fff;
     display: flex;
     align-items: center;
