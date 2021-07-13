@@ -14,11 +14,58 @@ export const getProductBySlug = (slug) => {
                 type: productConstants.GET_PRODUCTS_BY_SLUG,
                 payload:res.data
             })
+            
         }
         else{
             
         }
     }
+}
+
+
+export const getProductByName = (payload) => {
+
+    return async dispatch => {
+        
+        const res = await axios.post(`/products/searchProduct`,payload);
+        console.log(res);
+
+        if(res.status === 200){
+
+            dispatch({
+                type: productConstants.GET_PRODUCTS_BY_SLUG,
+                payload:res.data
+            })
+
+            dispatch({
+                type: productConstants.SET_SEARCH_CATEGORY,
+                payload: res.data
+            })
+
+            console.log(res.data.category);
+        }
+        else{
+            
+        }
+    }
+}
+
+
+
+
+export const getProductByCatSlug = (payload) => {
+
+   return async dispatch => {
+    const res = await axios.post('/product/search',payload);
+    console.log(res);
+    if(res.status == 200 ){
+
+        dispatch({
+            type: productConstants.SET_SEARCH_CATEGORY,
+            payload: res.data
+        })
+    }
+   }
 }
 
 

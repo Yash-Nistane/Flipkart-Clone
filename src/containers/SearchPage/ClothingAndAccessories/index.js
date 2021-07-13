@@ -18,12 +18,8 @@ const ClothingAndAccessories = (props) => {
   
   const product = useSelector((state) => state.product);
   const dispatch = useDispatch();
+  const { searchCategory } = product;
 
-  useEffect(() => {
-    const { match } = props;
-    console.log(props);
-    dispatch(getProductBySlug(match.params.slug));
-  }, []);
 
   return (
     <div style={{ padding: "10px", width:"90%", margin:"auto" }}>

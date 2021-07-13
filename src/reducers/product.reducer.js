@@ -2,6 +2,8 @@ import { productConstants } from "../actions/constants";
 
 const initState = {
   products: [],
+  //productsByCatSlug:[],
+  searchCategory:{},
   priceRange:{},
   productsByPrice: {
     // under5k: [],
@@ -72,6 +74,11 @@ export default (state = initState, action) => {
         error: action.payload.error,
       };
       break;
+    case productConstants.SET_SEARCH_CATEGORY:
+      state = {
+        ...state,
+        searchCategory:action.payload.category,
+      }
   }
   return state;
 };

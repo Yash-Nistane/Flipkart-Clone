@@ -10,7 +10,7 @@ import {
   DropdownMenu,
 } from "../MaterialUI";
 import { useDispatch, useSelector } from "react-redux";
-import { login, signout, signup as _signup } from "../../actions";
+import { login, signout, signup as _signup, getProductByCatSlug, getProductByName } from "../../actions";
 import { Link, useHistory } from "react-router-dom";
 import Cart from "../UI/Cart";
 
@@ -26,11 +26,19 @@ const Header = (props) => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [searchInput, setSearchInput] = useState("");
+  const [searching,setSearching] = useState(false);
+  
+
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   let history = useHistory();
 
   const cart = useSelector((state) => state.cart);
+  const product = useSelector(state => state.product);
+  const category = useSelector(state => state.category);
+
+  const {searchCategory} = product;
 
 
   const userSignup = () => {
@@ -62,6 +70,35 @@ const Header = (props) => {
     dispatch(signout());
   };
 
+  
+
+  const onSubmitSearch = () => {
+    const payload = {
+      name:searchInput,
+    }
+    console.log(payload);
+    //dispatch(getProductByCatSlug(payload));
+
+    dispatch(getProductByName(payload));
+    // console.log("good night",searchCategory.slug);
+    // console.log("before",searching);
+    // setSearching(true);
+    // console.log("after",searching);
+      
+    //history.push(`${searchCategory.slug}?cid=${searchCategory._id}&type=${searchCategory.type}`);
+    history.push(`/search`);
+    
+  }
+
+//  useEffect(() => {
+   
+//   console.log("in use effect",searching);
+//   if(searching)
+//    {history.push(`${searchCategory.slug}?cid=${searchCategory._id}&type=${searchCategory.type}`);}
+//    setSearching(false);
+// }, [searching]);
+  
+  
   useEffect(() => {
     if (auth.authenticate) {
       setLoginModal(false);
@@ -226,11 +263,14 @@ const Header = (props) => {
             <input
               className="searchInput"
               placeholder={"search for products, brands and more"}
+              onChange = {(e)=> setSearchInput(e.target.value)}
             />
-            <div className="searchIconContainer">
+            <div className="searchIconContainer" onClick={onSubmitSearch}>
               <IoIosSearch
                 style={{
                   color: "#2874f0",
+                  fontSize:"24px",
+                  cursor:"pointer"
                 }}
               />
             </div>

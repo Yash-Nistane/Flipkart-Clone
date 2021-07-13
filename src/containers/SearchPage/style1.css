@@ -3,16 +3,16 @@
     margin:0 10px;
 }
 .caImgContainer{
-    width: 285px;
+    width: 300px;
     overflow: hidden;
     position: relative;
     display: flex;
     justify-content: center;
 }
 .caImgContainer > img{
-    width: 275px;
+    width: 300px;
     object-fit: cover;
-    height:250px
+    height:400px
 } 
 
 .caProductName{
@@ -22,9 +22,4 @@
 .caProductPrice{
     font-size: 14px;
     font-weight: 600;
-}
-
-.productContainer :hover{
-    transform: scale(1.01);
-    transition:transform  0.3s;
 }

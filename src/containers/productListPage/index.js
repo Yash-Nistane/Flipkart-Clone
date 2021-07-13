@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect }from "react";
 import Layout from "../../components/Layout";
 import "./style.css";
 import ProductStore from "./ProductStore";
@@ -34,6 +34,8 @@ const ProductListPage = (props) => {
 
     return content;
   }
+
+  
 
   return (
     <Layout>

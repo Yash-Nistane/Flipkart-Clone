@@ -11,6 +11,7 @@ import CheckoutPage from './containers/CheckoutPage';
 import OrderPage from './containers/OrderPage';
 import OrderDetailsPage from "./containers/OrderDetailsPage";
 import PrivateRoute from "./components/HOC/PrivateRoute";
+import SearchPage from './containers/SearchPage';
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
           <Route path ="/" exact component={HomePage}/>
           <Route path ="/cart" component={CartPage}/>
           <Route path ="/checkout" component={CheckoutPage}/>
+          <Route path ="/search" component={SearchPage}/>
           <Route path="/account/orders" component={OrderPage} />
           <Route path="/order_details/:orderId" component={OrderDetailsPage} />
           <Route path ="/:productSlug/:productId/p"  component={ProductDetailsPage}/>
