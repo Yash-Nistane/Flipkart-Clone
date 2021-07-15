@@ -3,8 +3,10 @@ import Layout from "../../components/Layout";
 import "./style.css";
 import ProductStore from "./ProductStore";
 import ProductPage from "./ProductPage";
-import getParams from "../../utils/getParams";
+import ProductDefault from "./ProductDefault";
 import ClothingAndAccessories from "./ClothingAndAccessories";
+import getParams from "../../utils/getParams";
+import { BiRadioCircleMarked } from "react-icons/bi";
 
 
 /**
@@ -27,8 +29,12 @@ const ProductListPage = (props) => {
       case  'page':
         content = <ProductPage {...props}/>
         break;
-      default:
+      case "product":
         content = <ClothingAndAccessories {...props}/>;
+        break;
+      default:
+        content=<ProductDefault {...props}/>;
+        
 
     }
 

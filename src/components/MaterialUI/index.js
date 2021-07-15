@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./style.css";
 
 /**
@@ -25,10 +26,12 @@ const Modal = (props) => {
 };
 
 const MaterialInput = (props) => {
-  const [focus, setFocus] = useState(true);
+  
+  const [focus, setFocus] = useState(props.value === "" ? false : true);
+  const [touch, setTouch] = useState(false);
 
   return (
-    <div className="materialInput">
+    <div className={`materialInput ${focus ? "focused" : ""}`} >
       <label
         className={`label ${focus ? "focus" : ""}`}
         style={{
@@ -36,7 +39,7 @@ const MaterialInput = (props) => {
           lineHeight: "none",
         }}
       >
-        {props.label}
+         {props.label && `${props.label}`}
       </label>
       <div
         style={{
@@ -50,15 +53,28 @@ const MaterialInput = (props) => {
           onChange={props.onChange}
           onFocus={(e) => {
             setFocus(true);
+            setTouch(true);
           }}
           onBlur={(e) => {
             if (e.target.value === "") {
               setFocus(false);
+            }else{
+              setTouch(false);
             }
           }}
         />
         {props.rightElement ? props.rightElement : null}
       </div>
+
+      {touch && (
+        <div
+          style={{
+            fontSize: "10px",
+            color: "red",
+            fontWeight: 500,
+          }}
+        >{`${props.label} is Required`}</div>
+      )}
     </div>
   );
 };
@@ -96,7 +112,7 @@ const DropdownMenu = (props) => {
           {props.menus &&
             props.menus.map((item, index) => (
               <li key={index}>
-                <a  
+                <Link  
                     onClick = {(e => {
                     if(item.onClick){
                       e.preventDefault();
@@ -104,7 +120,7 @@ const DropdownMenu = (props) => {
                     }
                     
                 })} 
-                    href={item.href}>{item.label}</a>
+                    to={item.href}>{item.label}</Link>
               </li>
             ))}
         </ul>

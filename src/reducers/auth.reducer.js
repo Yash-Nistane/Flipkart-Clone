@@ -11,13 +11,15 @@ const initState = {
   authenticate: false,
   authenticating: false,
   loading: false,
-  error: null,
-  messge: "",
+  errorMessage: null,
+  
+ 
 };
 
 export default (state = initState, action) => {
   console.log(action);
   switch (action.type) {
+
     case authConstants.LOGIN_REQUEST:
       state = {
         ...state,
@@ -34,11 +36,16 @@ export default (state = initState, action) => {
         authenticating: false,
       };
       break;
+    case authConstants.LOGIN_FAILURE:
+      state ={
+        ...state,
+        errorMessage: action.payload.error
+      }
 
     case authConstants.LOGOUT_REQUEST:
       state = {
         ...state,
-        loading:true
+        loading: true,
       };
       break;
 
@@ -51,8 +58,20 @@ export default (state = initState, action) => {
     case authConstants.LOGOUT_FAILURE:
       state = {
         ...state,
-        error:action.payload.error,
-        loading:false
+        errorMessage: action.payload.error,
+        loading: false,
+      };
+      break;
+
+
+    case authConstants.SIGNUP_REQUEST:
+      break;
+    case authConstants.SIGNUP_SUCCESS:
+      break;
+    case authConstants.SIGNUP_FAILURE:
+      state = {
+        ...state,
+        errorMessage: action.payload.error
       };
       break;
   }

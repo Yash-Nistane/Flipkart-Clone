@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCategory, getProductDetailsById,addReview } from "../../actions";
+import {
+  getAllCategory,
+  getProductDetailsById,
+  addReview,
+} from "../../actions";
 import Layout from "../../components/Layout";
 import { IoIosArrowForward, IoIosStar, IoMdCart } from "react-icons/io";
 import { BiRupee } from "react-icons/bi";
-import { AiFillThunderbolt, AiFillTags,AiFillStar } from "react-icons/ai";
+import { AiFillThunderbolt, AiFillTags, AiFillStar } from "react-icons/ai";
 import { FaTags } from "react-icons/fa";
 import { MaterialButton } from "../../components/MaterialUI";
 import "./style.css";
@@ -17,7 +21,7 @@ import Rating from "../../components/UI/Rating";
  * @function ProductDetailsPage
  **/
 
-  const ProductDetailsPage = (props) => {
+const ProductDetailsPage = (props) => {
   const [imageNo, setImageNo] = useState(0);
   const [noOfStars, setNoOfStars] = useState(3);
   const [productReview, setProductReview] = useState("");
@@ -30,15 +34,14 @@ import Rating from "../../components/UI/Rating";
   };
 
   const submitReview = () => {
-
     const payload = {
       productId: product.productDetails._id,
-      review:productReview,
-      rating:noOfStars
-    }
+      review: productReview,
+      rating: noOfStars,
+    };
 
     dispatch(addReview(payload));
-  }
+  };
 
   useEffect(() => {
     const { productId } = props.match.params;
@@ -66,7 +69,8 @@ import Rating from "../../components/UI/Rating";
                 onMouseOver={() => changeImage(index)}
                 className={imageNo == index ? "thumbnail active" : "thumbnail"}
               >
-                <img src={generatePublicUrl(thumb.img)} alt={thumb.img} />
+                {/* <img src={generatePublicUrl(thumb.img)} alt={thumb.img} /> */}
+                <img src={thumb.img} />
               </div>
             ))}
             {/* <div className="thumbnail active">
@@ -78,10 +82,15 @@ import Rating from "../../components/UI/Rating";
           </div>
           <div className="productDescContainer">
             <div className="productDescImgContainer">
-              <img
+              {/* <img
                 src={generatePublicUrl(
                   product.productDetails.productPictures[imageNo].img
                 )}
+                alt={`${product.productDetails.productPictures[0].img}`}
+              /> */}
+
+              <img
+                src={product.productDetails.productPictures[imageNo].img}
                 alt={`${product.productDetails.productPictures[0].img}`}
               />
             </div>
@@ -147,7 +156,8 @@ import Rating from "../../components/UI/Rating";
             <p className="productTitle">{product.productDetails.name}</p>
             <div>
               <span className="ratingCount">
-                4.3 <IoIosStar />
+                4.3
+                <IoIosStar />
               </span>
               <span className="ratingNumbersReviews">
                 72,234 Ratings & 8,140 Reviews
@@ -182,25 +192,27 @@ import Rating from "../../components/UI/Rating";
                   <span className="offerTag">
                     <FaTags />
                   </span>
-                  <span style={{fontWeight:"500"}} >Bank Offer</span> 20% off on 1st txn with Amex
-                  Network Cards issued by ICICI Bank,IndusInd Bank,SBI Cards and
-                  Mobikwik <span className="terms">T&C</span>
-                </span>
-                <span className="offers">
-                  <span className="offerTag">
-                    <FaTags />
-                  </span>
-                  <span style={{fontWeight:"500"}}>Bank Offer</span> 10% Off on Bank of Baroda
-                  Mastercard debit card first time transaction, Terms and
-                  Condition apply <span className="terms">T&C</span>
-                </span>
-                <span className="offers">
-                  <span className="offerTag">
-                    <FaTags />
-                  </span>
-                  <span style={{fontWeight:"500"}}>Bank Offer</span> 10% Off on First time ICICI
-                  Mastercard Credit Card transaction, Terms and Condition apply{" "}
+                  <span style={{ fontWeight: "500" }}>Bank Offer</span> 20% off
+                  on 1st txn with Amex Network Cards issued by ICICI
+                  Bank,IndusInd Bank,SBI Cards and Mobikwik{" "}
                   <span className="terms">T&C</span>
+                </span>
+                <span className="offers">
+                  <span className="offerTag">
+                    <FaTags />
+                  </span>
+                  <span style={{ fontWeight: "500" }}>Bank Offer</span> 10% Off
+                  on Bank of Baroda Mastercard debit card first time
+                  transaction, Terms and Condition apply{" "}
+                  <span className="terms">T&C</span>
+                </span>
+                <span className="offers">
+                  <span className="offerTag">
+                    <FaTags />
+                  </span>
+                  <span style={{ fontWeight: "500" }}>Bank Offer</span> 10% Off
+                  on First time ICICI Mastercard Credit Card transaction, Terms
+                  and Condition apply <span className="terms">T&C</span>
                 </span>
                 <span className="offers">
                   <span className="offerTag">
@@ -211,7 +223,7 @@ import Rating from "../../components/UI/Rating";
                   <span className="terms">T&C</span>
                 </span>
               </div>
-              <div style={{ display: "flex", marginTop:"15px" }}>
+              <div style={{ display: "flex", marginTop: "15px" }}>
                 <span
                   style={{
                     width: "100px",
@@ -239,32 +251,67 @@ import Rating from "../../components/UI/Rating";
 
           <div className="reviewSection">
             <div className="ratingsAndReview">
-              <div style={{fontWeight:"500"}}>Ratings & Reviews</div>
-              <div style={{color:"grey",fontSize:"13px", fontWeight:"500"}}>
+              <div style={{ fontWeight: "500" }}>Ratings & Reviews</div>
+              <div
+                style={{ color: "grey", fontSize: "13px", fontWeight: "500" }}
+              >
                 <Rating value="4.3" /> 72,234 Ratings & 8,140 Reviews
               </div>
               <div style={{ marginLeft: "auto", marginRight: "100px" }}>
-                <button onClick={submitReview} className="addReviewBtn">Rate Product</button>
+                <button onClick={submitReview} className="addReviewBtn">
+                  Rate Product
+                </button>
               </div>
             </div>
 
-
             <div>
               <div>
-                <div style={{fontSize:"16px", marginBottom:"10px"}}>Rate this product</div>
-                <div style={{display:"flex"}}>
-                  <span onClick={() => setNoOfStars(1)} className={noOfStars > 0 ? "star rated" : "star"}><AiFillStar/></span>
-                  <span onClick={() => setNoOfStars(2)} className={noOfStars > 1 ? "star rated" : "star"}><AiFillStar/></span>
-                  <span onClick={() => setNoOfStars(3)} className={noOfStars > 2 ? "star rated" : "star"}><AiFillStar/></span>
-                  <span onClick={() => setNoOfStars(4)} className={noOfStars > 3 ? "star rated" : "star"}><AiFillStar/></span>
-                  <span onClick={() => setNoOfStars(5)} className={noOfStars > 4 ? "star rated" : "star"}><AiFillStar/></span>
+                <div style={{ fontSize: "16px", marginBottom: "10px" }}>
+                  Rate this product
+                </div>
+                <div style={{ display: "flex" }}>
+                  <span
+                    onClick={() => setNoOfStars(1)}
+                    className={noOfStars > 0 ? "star rated" : "star"}
+                  >
+                    <AiFillStar />
+                  </span>
+                  <span
+                    onClick={() => setNoOfStars(2)}
+                    className={noOfStars > 1 ? "star rated" : "star"}
+                  >
+                    <AiFillStar />
+                  </span>
+                  <span
+                    onClick={() => setNoOfStars(3)}
+                    className={noOfStars > 2 ? "star rated" : "star"}
+                  >
+                    <AiFillStar />
+                  </span>
+                  <span
+                    onClick={() => setNoOfStars(4)}
+                    className={noOfStars > 3 ? "star rated" : "star"}
+                  >
+                    <AiFillStar />
+                  </span>
+                  <span
+                    onClick={() => setNoOfStars(5)}
+                    className={noOfStars > 4 ? "star rated" : "star"}
+                  >
+                    <AiFillStar />
+                  </span>
                 </div>
               </div>
 
-              <div style={{fontSize:"16px", marginBottom:"15px"}}>
+              <div style={{ fontSize: "16px", marginBottom: "15px" }}>
                 <div>Review this product</div>
                 <div>
-                  <textarea type="text" placeholder="Description..." className="reviewInput" onChange={(e) => setProductReview(e.target.value)}/>
+                  <textarea
+                    type="text"
+                    placeholder="Description..."
+                    className="reviewInput"
+                    onChange={(e) => setProductReview(e.target.value)}
+                  />
                 </div>
               </div>
             </div>
@@ -273,12 +320,20 @@ import Rating from "../../components/UI/Rating";
               <div>
                 {product.productDetails.reviews.map((data, index) => (
                   <div style={{ margin: "0 15px" }}>
-                    <div style={{padding:"20px 0 30px 0", borderBottom:"0.5px solid lightgrey"}}>
+                    <div
+                      style={{
+                        padding: "20px 0 30px 0",
+                        borderBottom: "0.5px solid lightgrey",
+                      }}
+                    >
                       <div>
-                        <div style={{marginBottom:"15px",fontSize:"14px"}}>
-                          <Rating value={data.rating} /> {`${data.userId.firstName} ${data.userId.lastName}`}
+                        <div style={{ marginBottom: "15px", fontSize: "14px" }}>
+                          <Rating value={data.rating} />{" "}
+                          {`${data.userId.firstName} ${data.userId.lastName}`}
                         </div>
-                        <div style={{padding:"0 15px",fontSize:"14px"}}>{data.review}</div>
+                        <div style={{ padding: "0 15px", fontSize: "14px" }}>
+                          {data.review}
+                        </div>
                       </div>
                     </div>
                   </div>

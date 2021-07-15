@@ -39,9 +39,11 @@ function App() {
           <Route path ="/checkout" component={CheckoutPage}/>
           <Route path ="/search" component={SearchPage}/>
           <Route path="/account/orders" component={OrderPage} />
+         
           <Route path="/order_details/:orderId" component={OrderDetailsPage} />
           <Route path ="/:productSlug/:productId/p"  component={ProductDetailsPage}/>
-          <Route path ="/:slug"  component={ProductListPage}/>
+          <Route path ="/:slug" component={ProductListPage}/>
+         
           
         </Switch>
       </Router>

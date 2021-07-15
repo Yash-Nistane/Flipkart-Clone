@@ -23,6 +23,11 @@ const ProductStore = (props) => {
     under30k: 30000,
   });
 
+  const generateRating = () => {
+    const random = (3.3 + (Math.random() * 1)).toFixed(1);
+    return random;
+  }
+
   const { searchCategory } = product;
   return (
     <>
@@ -53,8 +58,12 @@ const ProductStore = (props) => {
                     className="productImgContainer"
                     style={{ margin: "20px auto" }}
                   >
-                    <img
+                    {/* <img
                       src={generatePublicUrl(product.productPictures[0].img)}
+                      alt="pic"
+                    /> */}
+                    <img
+                      src={product.productPictures[0].img}
                       alt="pic"
                     />
                     {/* <img src = "http://localhost:2000/public/ttDFTf0KX0-galaxy-m42-galaxy-m42-samsung-original-imag3hz5gndhffxn.jpeg" /> */}
@@ -73,7 +82,7 @@ const ProductStore = (props) => {
                     </div>
                     <div style={{ marginTop: "8px" }}>
                       <span className="ratingCount">
-                        4.3 <IoIosStar />
+                        {generateRating()} <IoIosStar />
                       </span>
                       &nbsp;
                       <span className="productRating">(3353)</span>

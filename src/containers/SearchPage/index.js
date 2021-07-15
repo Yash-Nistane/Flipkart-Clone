@@ -5,6 +5,7 @@ import Layout from "./../../components/Layout";
 import ClothingAndAccessories from "./ClothingAndAccessories";
 import ProductStore from "./ProductStore";
 
+
 /**
  * @author
  * @function SearchPage
@@ -27,11 +28,15 @@ const SearchPage = (props) => {
       case "store":
         content = <ProductStore {...props} />;
         break;
-      //  case  'page':
-      //    content = <ProductPage {...props}/>
-      //    break;
-       default:
-       content = <ClothingAndAccessories {...props}/>;
+        // case  'page':
+        //   content = <ProductPage {...props}/>
+        //   break;
+       case "product":
+          content = <ClothingAndAccessories {...props}/>;
+          break;
+      //  default:
+      //     content=<ProductDefault {...props}/>;
+
     }
     return content;
   };
